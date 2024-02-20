@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: "IrQcyTog3X8VW",
+      selectedGifId: null,
     }
     this.search("hola");
 
@@ -25,7 +25,7 @@ class App extends Component {
 
   search = (query) => {
   Giphy("edadcukarvoW4DXeg5lMxyl4p7ZSq4ry").search({
-    q: query,
+     q: query,
     rating: 'g',
     limit: 10,
     }, (err, res) => {
