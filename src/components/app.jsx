@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Giphy from "giphy-api";
 import SearchBar from "./search_bar";
 import Gif from "./gif";
 import GifsList from "./gifs_list";
-import Giphy from "giphy-api";
 
+const GIPHY_API_KEY = 'edadcukarvoW4DXeg5lMxyl4p7ZSq4ry';
 
 class App extends Component {
   constructor (props) {
@@ -22,18 +23,36 @@ class App extends Component {
       selectedGifId: gifId
     });
   }
+//NUEVA VERSION
 
   search = (query) => {
-  Giphy("edadcukarvoW4DXeg5lMxyl4p7ZSq4ry").search({
-     q: query,
-    rating: 'g',
-    limit: 10,
-    }, (err, res) => {
+    const giphy = Giphy(GIPHY_API_KEY);
+    giphy.search({
+      q: query,
+      rating: 'g',
+      limit: 10
+    }).then((response) => {
       this.setState({
-        gifs: res.data
+        gifs: response.data
       });
-  });
+    }).catch(error => {
+      console.error('Error fetching from Giphy API', error);
+    });
   }
+
+// MI VERSION
+  // search = (query) => {
+  // Giphy("edadcukarvoW4DXeg5lMxyl4p7ZSq4ry").search({
+  //    q: query,
+  //   rating: 'g',
+  //   limit: 10,
+  //   }, (err, res) => {
+  //     this.setState({
+  //       gifs: res.data
+  //     });
+  // });
+  // }
+
   render() {
     const gifs = [
       { id: "IrQcyTog3X8VW" },
