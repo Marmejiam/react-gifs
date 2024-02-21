@@ -24,7 +24,6 @@ class App extends Component {
     });
   }
 //NUEVA VERSION
-
   search = (query) => {
     const giphy = Giphy(GIPHY_API_KEY);
     giphy.search({
